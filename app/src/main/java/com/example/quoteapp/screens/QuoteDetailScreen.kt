@@ -39,6 +39,7 @@ fun QuoteDetail(quote: Quote){
         contentAlignment = Alignment.Center,
         modifier = Modifier
             .fillMaxSize(1f)
+            .background(MaterialTheme.colors.background)
             .background(
                 Brush.sweepGradient(
                     colors = listOf(
