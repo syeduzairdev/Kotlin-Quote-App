@@ -37,16 +37,18 @@ import com.example.quoteapp.models.Quote
 
 @Composable
 
-fun QuoteListItem(quote:Quote,onClick:()->Unit) {
+fun QuoteListItem(quote:Quote,onClick:(quote:Quote)->Unit) {
 Card (elevation = 4.dp,
-    modifier = Modifier.padding(8.dp)
+    modifier = Modifier.padding(8.dp) .clickable {onClick(
+        quote
+    )  }
     ){
     Row (  modifier = Modifier.padding(16.dp)){
 Image(imageVector = Icons.Filled.FormatQuote,
     colorFilter = androidx.compose.ui.graphics.ColorFilter.tint(Color.White),
     alignment = Alignment.TopStart,
     modifier = Modifier
-        .clickable {onClick()  }
+
         .size(40.dp)
 //        .rotate(180F)
 

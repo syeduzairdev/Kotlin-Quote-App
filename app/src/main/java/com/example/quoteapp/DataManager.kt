@@ -4,11 +4,14 @@ import android.content.Context
 import androidx.compose.runtime.mutableStateOf
 import com.example.quoteapp.models.Quote
 import com.google.gson.Gson
-import java.nio.charset.Charset
 
 object DataManager {
     var data= emptyArray<Quote>()
+    var currentQuote: Quote? =null
+
+
     var isDataLoaded= mutableStateOf(false)
+    var currentPage= mutableStateOf(Pages.LISITNG)
 
     fun loadQuoteJsonFromFile(context: Context){
         val inputStream=context.assets.open("quotes.json")
@@ -20,5 +23,15 @@ object DataManager {
         val gson= Gson()
         data=gson.fromJson(json,Array<Quote>::class.java)
         isDataLoaded.value=true
+    }
+
+    fun SwitchPages(quote: Quote?){
+        if(currentPage.value==Pages.LISITNG){
+            currentQuote=quote
+            currentPage.value=Pages.DETAILS
+        }else{
+            currentPage.value=Pages.LISITNG
+        }
+
     }
 }

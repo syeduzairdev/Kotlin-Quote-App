@@ -6,12 +6,11 @@ import androidx.activity.compose.setContent
 import androidx.compose.foundation.layout.Box
 import androidx.compose.foundation.layout.fillMaxSize
 import androidx.compose.material.MaterialTheme
-import androidx.compose.material.Surface
 import androidx.compose.material.Text
 import androidx.compose.runtime.Composable
 import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
-import androidx.compose.ui.tooling.preview.Preview
+import com.example.quoteapp.screens.QuoteDetail
 import com.example.quoteapp.screens.QuoteListScreen
 import kotlinx.coroutines.CoroutineScope
 import kotlinx.coroutines.Dispatchers
@@ -35,17 +34,29 @@ class MainActivity : ComponentActivity() {
 @Composable
 fun App(){
     if (DataManager.isDataLoaded.value){
-        QuoteListScreen(data =DataManager.data ) {
-            
+
+        if(DataManager.currentPage.value==Pages.LISITNG){
+            QuoteListScreen(data =DataManager.data ) {
+                DataManager.SwitchPages(it)
+
+            }
+        }else{
+            DataManager.currentQuote?.let { QuoteDetail(quote = it) }
         }
+
     }else{
         Box(modifier = Modifier.fillMaxSize(1f),
             contentAlignment = Alignment.Center
             ){
-            Text(text = "Loading....",
+            Text(text = "Quotes Loading....",
                 style = MaterialTheme.typography.h6
                 )
 
         }
     }
+}
+
+enum class Pages{
+    LISITNG,
+    DETAILS
 }

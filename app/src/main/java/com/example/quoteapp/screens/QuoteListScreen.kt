@@ -16,7 +16,7 @@ import com.example.quoteapp.models.Quote
 
 @Composable
 
-fun QuoteListScreen(data:Array<Quote>,onClick:()->Unit){
+fun QuoteListScreen(data:Array<Quote>,onClick:(quote:Quote)->Unit){
     Column {
         Text(text = "Quotes App",
             textAlign = TextAlign.Center,
@@ -26,8 +26,6 @@ fun QuoteListScreen(data:Array<Quote>,onClick:()->Unit){
             fontFamily = FontFamily(Font(R.font.montserrat_regular))
 
             )
-        QuoteList(data = data) {
-            onClick()
-        }
+        QuoteList(data = data,onClick)
     }
 }

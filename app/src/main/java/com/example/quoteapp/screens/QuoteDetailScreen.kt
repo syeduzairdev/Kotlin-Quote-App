@@ -1,5 +1,6 @@
 package com.example.quoteapp.screens
 
+import androidx.activity.compose.BackHandler
 import androidx.compose.foundation.Image
 import androidx.compose.foundation.background
 import androidx.compose.foundation.layout.Arrangement
@@ -23,14 +24,17 @@ import androidx.compose.ui.graphics.Brush
 import androidx.compose.ui.graphics.Color
 import androidx.compose.ui.text.font.Font
 import androidx.compose.ui.text.font.FontFamily
-import androidx.compose.ui.tooling.preview.Preview
 import androidx.compose.ui.unit.dp
+import com.example.quoteapp.DataManager
 import com.example.quoteapp.R
 import com.example.quoteapp.models.Quote
 
-@Preview
 @Composable
 fun QuoteDetail(quote: Quote){
+    BackHandler (){
+        DataManager.SwitchPages(null)
+    }
+
     Box(
         contentAlignment = Alignment.Center,
         modifier = Modifier
